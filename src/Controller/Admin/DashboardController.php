@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\GroupCompetence;
+use App\Entity\Grade;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -31,5 +32,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToCrud('GroupCompetence', 'fas fa-map-marker-alt', GroupCompetence::class);
+        yield MenuItem::linkToCrud('Grade', 'fas fa-map-marker-alt', Grade::class);
     }
 }

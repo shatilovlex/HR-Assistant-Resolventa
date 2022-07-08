@@ -5,5 +5,6 @@
 3. Скопируйте файл `.env.example` в `.env` командой `cp .env.example .env`
 4. Запустите docker контейнеры командой `docker-compose up -d --build`
 5. Запустите установку зависимостей проекта командой `docker exec -itu1000 hr_assistant_php-fpm_1 composer install`
+5. Запустите установку миграций `docker exec -itu1000 hr_assistant_php-fpm_1 php bin/console do:mi:mi`
 7. Вернитесь в рабочую директорию `cd ..`
 8. Перейдите на [страницу приветствия Symfony](http://localhost/)

@@ -16,6 +16,9 @@ class GroupCompetence
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\OneToMany(targetEntity: Competence::class, mappedBy: 'groupCompetence')]
+    private $competences;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class GroupCompetence
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCompetences(): ?Competence
+    {
+        return $this->competences;
+    }
+
+    public function setCompetences(?Competence $competences): self
+    {
+        $this->competences = $competences;
 
         return $this;
     }

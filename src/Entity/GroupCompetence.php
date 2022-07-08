@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GroupCompetenceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GroupCompetenceRepository::class)]
@@ -18,6 +20,11 @@ class GroupCompetence
 
     #[ORM\OneToMany(targetEntity: Competence::class, mappedBy: 'groupCompetence')]
     private $competences;
+
+    public function __construct()
+    {
+        $this->competences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,15 +43,38 @@ class GroupCompetence
         return $this;
     }
 
-    public function getCompetences(): ?Competence
+    /**
+     * @return Collection<int, GroupCompetence>
+     */
+    public function getCompetences(): Collection
     {
         return $this->competences;
     }
 
-    public function setCompetences(?Competence $competences): self
+    public function addCompetence(Competence $competence): self
     {
-        $this->competences = $competences;
+        if (!$this->competences->contains($competence)) {
+            $this->competences[] = $competence;
+            $competence->setGroupCompetence($this);
+        }
 
         return $this;
+    }
+
+    public function removeCompetence(Competence $competence): self
+    {
+        if ($this->competences->removeElement($competence)) {
+            // set the owning side to null (unless already changed)
+            if ($competence->getGroupCompetence() === $this) {
+                $competence->setGroupCompetence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this?->getName();
     }
 }

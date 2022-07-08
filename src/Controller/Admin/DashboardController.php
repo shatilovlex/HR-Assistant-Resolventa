@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Competence;
 use App\Entity\Employee;
 use App\Entity\GroupCompetence;
 use App\Entity\Grade;
@@ -35,5 +36,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Group Competence', 'fas fa-user', GroupCompetence::class);
         yield MenuItem::linkToCrud('Grade', 'fas fa-clipboard-check', Grade::class);
         yield MenuItem::linkToCrud('Employees', 'fas fa-user', Employee::class);
+        yield MenuItem::linkToCrud('Competence', 'fas fa-clipboard-check', Competence::class);
     }
 }

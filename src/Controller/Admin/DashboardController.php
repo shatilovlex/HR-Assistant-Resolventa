@@ -2,14 +2,17 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Employees;
 use App\Entity\GroupCompetence;
 use App\Entity\Grade;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -25,13 +28,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Public');
+            ->setTitle('Admin Panel');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
-        yield MenuItem::linkToCrud('GroupCompetence', 'fas fa-map-marker-alt', GroupCompetence::class);
-        yield MenuItem::linkToCrud('Grade', 'fas fa-map-marker-alt', Grade::class);
+        yield MenuItem::linkToCrud('Group Competence', 'fas fa-user', GroupCompetence::class);
+        yield MenuItem::linkToCrud('Grade', 'fas fa-clipboard-check', Grade::class);
+        yield MenuItem::linkToCrud('Employees', 'fas fa-user', Employees::class);
     }
 }

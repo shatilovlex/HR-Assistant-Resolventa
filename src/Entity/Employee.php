@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployeesRepository;
+use App\Repository\EmployeeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EmployeesRepository::class)]
-class Employees
+#[ORM\Entity(repositoryClass: EmployeeRepository::class)]
+#[ORM\Table(name: 'employees')]
+class Employee
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,7 +18,7 @@ class Employees
     private $surname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $first_name;
+    private $firstName;
 
     public function getId(): ?int
     {
@@ -38,12 +39,12 @@ class Employees
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }

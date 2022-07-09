@@ -20,6 +20,9 @@ class Employee
     #[ORM\Column(type: 'string', length: 255)]
     private $firstName;
 
+    #[ORM\ManyToOne(targetEntity: Grade::class, inversedBy: 'employees')]
+    private $grade;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Employee
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getGrade(): ?Grade
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(?Grade $grade): self
+    {
+        $this->grade = $grade;
 
         return $this;
     }

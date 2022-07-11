@@ -55,4 +55,9 @@ class ExpectationLevel
             throw new \DomainException("Значение должно быть в пределах от 1 до 4");
         }
     }
+
+    public function __toString(): string
+    {
+        return $this?->getCompetence();
+    }
 }

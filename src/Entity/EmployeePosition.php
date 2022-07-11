@@ -29,13 +29,22 @@ class EmployeePosition
         return $this->finalScore;
     }
 
-    public function setScore($finalScore): void
+    public function setFinalScore($finalScore): void
     {
         self::assertFinalScoreIsCorrect($finalScore);
 
         $this->finalScore = $finalScore;
     }
 
+    public function getExpectationLevel()
+    {
+        return $this->expectationLevel;
+    }
+
+    public function setExpectationLevel($expectationLevel): void
+    {
+        $this->expectationLevel = $expectationLevel;
+    }
 
     private static function assertFinalScoreIsCorrect($finalScore)
     {

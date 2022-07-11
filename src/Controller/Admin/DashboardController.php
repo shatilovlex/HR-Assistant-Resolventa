@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Competence;
 use App\Entity\Employee;
+use App\Entity\EmployeePosition;
+use App\Entity\ExpectationLevel;
 use App\Entity\GroupCompetence;
 use App\Entity\Grade;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -34,8 +36,10 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
         yield MenuItem::linkToCrud('Group Competence', 'fas fa-user', GroupCompetence::class);
-        yield MenuItem::linkToCrud('Grade', 'fas fa-clipboard-check', Grade::class);
+        yield MenuItem::linkToCrud('Grade', 'fas fa-file-text', Grade::class);
         yield MenuItem::linkToCrud('Employees', 'fas fa-user', Employee::class);
-        yield MenuItem::linkToCrud('Competence', 'fas fa-clipboard-check', Competence::class);
+        yield MenuItem::linkToCrud('Competence', 'fas fa-file-text', Competence::class);
+        yield MenuItem::linkToCrud('Expectation Level', 'fas fa-clipboard-check', ExpectationLevel::class);
+        yield MenuItem::linkToCrud('Employee Position', 'fa-solid fa-chart-gantt', EmployeePosition::class);
     }
 }

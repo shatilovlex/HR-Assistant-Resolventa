@@ -23,6 +23,9 @@ class Employee
     #[ORM\ManyToOne(targetEntity: Grade::class, inversedBy: 'employees')]
     private $grade;
 
+    #[ORM\ManyToOne(targetEntity: EmployeePosition::class, inversedBy: 'employee')]
+    private $employeePositions;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,5 +65,10 @@ class Employee
         $this->grade = $grade;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return  $this?->getSurname();
     }
 }

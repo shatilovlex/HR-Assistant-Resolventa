@@ -20,7 +20,7 @@ class ExpectationLevel
     private $competence;
 
     #[ORM\OneToMany(targetEntity: EmployeePosition::class, mappedBy: 'expectationLevel')]
-    private $employeePositions;
+    private $employeePosition;
 
     public function getId(): ?int
     {

@@ -48,7 +48,7 @@ class ExpectationLevel
 
     private static function assertScoreIsCorrect(int $score): void
     {
-        if ($score < 1 || $score > 4) {
+        if ($score < 0 || $score > 4) {
             throw new \DomainException("Значение должно быть в пределах от 1 до 4");
         }
     }

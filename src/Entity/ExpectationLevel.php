@@ -19,6 +19,9 @@ class ExpectationLevel
     #[ORM\OneToOne(targetEntity: Competence::class, inversedBy: 'expectationLevel')]
     private $competence;
 
+    #[ORM\OneToMany(targetEntity: EmployeePosition::class, mappedBy: 'expectationLevel')]
+    private $employeePositions;
+
     public function getId(): ?int
     {
         return $this->id;

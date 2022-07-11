@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table border="2">
+        <caption>Table</caption>
+        <tr>
+            <th>Group Competence</th>
+        </tr>
+        {% for groupCompetence in groupCompetencies %}
+            <tr><td>{{ groupCompetence.name }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

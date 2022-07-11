@@ -19,6 +19,9 @@ class Competence
     #[ORM\ManyToOne(targetEntity: GroupCompetence::class, inversedBy: 'competences')]
     public $groupCompetence;
 
+    #[ORM\OneToOne(targetEntity: ExpectationLevel::class, mappedBy: 'competence')]
+    private $expectationLevel;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,5 +49,20 @@ class Competence
         $this->groupCompetence = $groupCompetence;
 
         return $this;
+    }
+
+    public function getExpectationLevel()
+    {
+        return $this->expectationLevel;
+    }
+
+    public function setExpectationLevel($expectationLevel): void
+    {
+        $this->expectationLevel = $expectationLevel;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('%s - %s', $this?->getGroupCompetence()?->getName(), $this?->getName());
     }
 }

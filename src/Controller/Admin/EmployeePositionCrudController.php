@@ -25,8 +25,8 @@ class EmployeePositionCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('employee'),
-            AssociationField::new('expectationLevel'),
+            AssociationField::new('employee')->setRequired(true),
+            AssociationField::new('expectationLevel')->setRequired(true),
             ChoiceField::new('finalScore')
                 ->setChoices(self::FINALSCORES)
                 ->renderExpanded(),

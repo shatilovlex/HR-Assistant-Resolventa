@@ -25,7 +25,7 @@ class ExpectationLevelCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            AssociationField::new('competence'),
+            AssociationField::new('competence')->setRequired(true),
             ChoiceField::new('score')
                 ->setChoices(self::SCORES)
                 ->renderExpanded(),

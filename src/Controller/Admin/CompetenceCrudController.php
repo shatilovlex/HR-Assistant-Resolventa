@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Competence;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class CompetenceCrudController extends AbstractCrudController
@@ -19,7 +18,7 @@ class CompetenceCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            AssociationField::new('groupCompetence'),
+            AssociationField::new('groupCompetence')->setRequired(true),
         ];
     }
 }

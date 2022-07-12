@@ -69,6 +69,6 @@ class Employee
 
     public function __toString(): string
     {
-        return  $this?->getSurname();
+        return  sprintf('%s %s', $this?->getSurname(), $this?->getFirstName());
     }
 }

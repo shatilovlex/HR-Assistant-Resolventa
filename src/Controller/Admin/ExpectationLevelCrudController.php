@@ -10,11 +10,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 class ExpectationLevelCrudController extends AbstractCrudController
 {
     private const SCORES = [
-        'Нет знаний' => 0,
-        'Теоретические знания'=> 1,
-        'Есть опыт'=> 2,
-        'Профи'=> 3,
-        'Гуру'=> 4,
+        'Нет знаний' => ExpectationLevel::SCORE_NO_KNOWLEDGE,
+        'Теоретические знания' => ExpectationLevel::SCORE_THEORETICAL_KNOWLEDGE,
+        'Есть опыт' => ExpectationLevel::SCORE_HAVE_EXPERIENCE,
+        'Профи' => ExpectationLevel::SCORE_PROFICIENT,
+        'Гуру' => ExpectationLevel::SCORE_GURU,
     ];
 
     public static function getEntityFqcn(): string

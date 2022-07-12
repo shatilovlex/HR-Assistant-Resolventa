@@ -12,26 +12,26 @@ class Employee
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $surname;
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $surname;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $firstName;
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $firstName;
 
     #[ORM\ManyToOne(targetEntity: Grade::class, inversedBy: 'employees')]
-    private $grade;
+    private Grade $grade;
 
     #[ORM\ManyToOne(targetEntity: EmployeePosition::class, inversedBy: 'employee')]
-    private $employeePositions;
+    private EmployeePosition $employeePositions;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getSurname(): ?string
+    public function getSurname(): string
     {
         return $this->surname;
     }
@@ -43,7 +43,7 @@ class Employee
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -55,12 +55,12 @@ class Employee
         return $this;
     }
 
-    public function getGrade(): ?Grade
+    public function getGrade(): Grade
     {
         return $this->grade;
     }
 
-    public function setGrade(?Grade $grade): self
+    public function setGrade(Grade $grade): self
     {
         $this->grade = $grade;
 
@@ -69,6 +69,6 @@ class Employee
 
     public function __toString(): string
     {
-        return  sprintf('%s %s', $this?->getSurname(), $this?->getFirstName());
+        return  sprintf('%s %s', $this->getSurname(), $this->getFirstName());
     }
 }

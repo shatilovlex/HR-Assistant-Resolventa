@@ -11,23 +11,24 @@ class EmployeePosition
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $finalScore;
+    #[ORM\Column(type: 'integer', nullable: false)]
+    private int $finalScore;
 
     #[ORM\ManyToOne(targetEntity: ExpectationLevel::class, inversedBy: 'employeePosition')]
-    public $expectationLevel;
+    private ExpectationLevel $expectationLevel;
 
     #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'employeePositions')]
-    public $employee;
+    private Employee $employee;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getFinalScore() {
+    public function getFinalScore(): int
+    {
         return $this->finalScore;
     }
 
@@ -38,44 +39,32 @@ class EmployeePosition
         $this->finalScore = $finalScore;
     }
 
-    public function getExpectationLevel()
-    {
-        return $this->expectationLevel;
-    }
-
-    public function setExpectationLevel($expectationLevel): void
-    {
-        $this->expectationLevel = $expectationLevel;
-    }
-
-    public function getSurname(): ?string
-    {
-        return $this->surname;
-    }
-
-    public function setSurname(string $surname): self
-    {
-        $this->surname = $surname;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
     private static function assertFinalScoreIsCorrect($finalScore)
     {
         if ($finalScore < 0 || $finalScore > 4) {
             throw new \DomainException("Значение должно быть в пределах от 1 до 4");
         }
+    }
+
+    public function getExpectationLevel(): ExpectationLevel
+    {
+        return $this->expectationLevel;
+    }
+
+    public function setExpectationLevel(ExpectationLevel $expectationLevel): void
+    {
+        $this->expectationLevel = $expectationLevel;
+    }
+
+    public function getEmployee(): Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(Employee $employee): self
+    {
+        $this->employee = $employee;
+
+        return $this;
     }
 }

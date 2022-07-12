@@ -11,23 +11,23 @@ class Competence
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $name;
 
     #[ORM\ManyToOne(targetEntity: GroupCompetence::class, inversedBy: 'competences')]
-    public $groupCompetence;
+    private GroupCompetence $groupCompetence;
 
     #[ORM\OneToOne(targetEntity: ExpectationLevel::class, mappedBy: 'competence')]
-    private $expectationLevel;
+    private ExpectationLevel $expectationLevel;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -39,12 +39,12 @@ class Competence
         return $this;
     }
 
-    public function getGroupCompetence(): ?GroupCompetence
+    public function getGroupCompetence(): GroupCompetence
     {
         return $this->groupCompetence;
     }
 
-    public function setGroupCompetence(?GroupCompetence $groupCompetence): self
+    public function setGroupCompetence(GroupCompetence $groupCompetence): self
     {
         $this->groupCompetence = $groupCompetence;
 
@@ -63,6 +63,6 @@ class Competence
 
     public function __toString(): string
     {
-        return sprintf('%s - %s', $this?->getGroupCompetence()?->getName(), $this?->getName());
+        return sprintf('%s - %s', $this->getGroupCompetence()->getName(), $this->getName());
     }
 }

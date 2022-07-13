@@ -1,14 +1,26 @@
-{% extends 'base.html.twig' %}
+{# templates/admin/my-custom-page.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
 
-{% block body %}
-    <table border="2">
-        <caption>Table</caption>
+{% block content_title %}Table of competence{% endblock %}
+
+{% block main %}
+    <table class="datagrid">
+        <thead>
         <tr>
-            <th>Group Competence</th>
+            <td>Employees</td>
+            <td></td>
         </tr>
-        {% for groupCompetence in groupCompetencies %}
-            <tr><td>{{ groupCompetence.name }}</td></tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.firstName }} {{ employee.surname }}</td>
+                <td>
+                    <a href="{{ ea_url().setRoute('view_table_competence', {'id' : employee.id}) }}">
+                        View Details
+                    </a>
+            </tr>
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
-

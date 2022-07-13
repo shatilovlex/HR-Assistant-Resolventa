@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
@@ -23,8 +24,8 @@ class Employee
     #[ORM\ManyToOne(targetEntity: Grade::class, inversedBy: 'employees')]
     private Grade $grade;
 
-    #[ORM\ManyToOne(targetEntity: EmployeePosition::class, inversedBy: 'employee')]
-    private EmployeePosition $employeePositions;
+    #[ORM\OneToMany(targetEntity: EmployeePosition::class, mappedBy: 'employee')]
+    private Collection $employeePositions;
 
     public function getId(): int
     {
@@ -65,6 +66,11 @@ class Employee
         $this->grade = $grade;
 
         return $this;
+    }
+
+    public function getEmployeePositions(): Collection
+    {
+        return $this->employeePositions;
     }
 
     public function __toString(): string

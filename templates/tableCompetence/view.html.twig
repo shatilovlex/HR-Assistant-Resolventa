@@ -1,0 +1,32 @@
+{# templates/admin/my-custom-page.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Table of competence{% endblock %}
+
+{% block main %}
+    <p>Employee name: {{ employee.firstName }} {{ employee.surname }}</p>
+    <p>Grade: {{ employee.grade.name }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Группа компетенций</td>
+                <td>Компетенция</td>
+                <td>Ожидаемая оценка</td>
+                <td>Текущая оценка</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employeePosition in employee.employeePositions %}
+                {% set groupCompetence = employeePosition.expectationLevel.competence.groupCompetence %}
+                {% set countRowspan = groupCompetence.competences %}
+            <tr>
+                <td>{{ employeePosition.expectationLevel.competence.groupCompetence.name }}</td>
+                <td>{{ employeePosition.expectationLevel.competence.name }}</td>
+                <td>Ожидаемая оценка</td>
+                <td>Текущая оценка</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

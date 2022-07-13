@@ -41,5 +41,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Competence', 'fas fa-file-text', Competence::class);
         yield MenuItem::linkToCrud('Expectation Level', 'fas fa-clipboard-check', ExpectationLevel::class);
         yield MenuItem::linkToCrud('Employee Position', 'fa-solid fa-chart-gantt', EmployeePosition::class);
+        yield MenuItem::linktoRoute('Table of competence', 'fa fa-chart-bar', 'tableCompetence');
     }
 }

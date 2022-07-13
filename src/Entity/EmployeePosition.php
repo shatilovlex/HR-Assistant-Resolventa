@@ -8,6 +8,20 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: EmployeePositionRepository::class)]
 class EmployeePosition
 {
+    public const SCORE_NO_KNOWLEDGE = 0;
+    public const SCORE_THEORETICAL_KNOWLEDGE = 1;
+    public const SCORE_HAVE_EXPERIENCE = 2;
+    public const SCORE_PROFICIENT = 3;
+    public const SCORE_GURU = 4;
+
+    private const SCORES = [
+        self::SCORE_NO_KNOWLEDGE,
+        self::SCORE_THEORETICAL_KNOWLEDGE,
+        self::SCORE_HAVE_EXPERIENCE,
+        self::SCORE_PROFICIENT,
+        self::SCORE_GURU,
+    ];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -41,9 +55,14 @@ class EmployeePosition
 
     private static function assertFinalScoreIsCorrect($finalScore)
     {
-        if ($finalScore < 0 || $finalScore > 4) {
+        if (!self::scoreIsCorrect($finalScore)) {
             throw new \DomainException("Значение должно быть в пределах от 1 до 4");
         }
+    }
+
+    private static function scoreIsCorrect(int $finalScore): bool
+    {
+        return array_search($finalScore, self::SCORES);
     }
 
     public function getExpectationLevel(): ExpectationLevel

@@ -20,7 +20,7 @@ class EmployeesCrudController extends AbstractCrudController
         return [
             TextField::new('surname'),
             TextField::new('firstName'),
-            AssociationField::new('grade')
+            AssociationField::new('grade')->setRequired(true),
         ];
     }
 }

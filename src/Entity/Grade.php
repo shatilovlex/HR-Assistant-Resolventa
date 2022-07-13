@@ -13,25 +13,25 @@ class Grade
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    #[ORM\Column(type: 'string', length: 255, nullable: false, unique: true)]
+    private string $name;
 
     #[ORM\OneToMany(mappedBy: 'grade', targetEntity: Employee::class)]
-    private $employees;
+    private Collection $employees;
 
     public function __construct()
     {
         $this->employees = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -43,9 +43,6 @@ class Grade
         return $this;
     }
 
-    /**
-     * @return Collection<int, Employee>
-     */
     public function getEmployees(): Collection
     {
         return $this->employees;
@@ -64,7 +61,6 @@ class Grade
     public function removeEmployee(Employee $employee): self
     {
         if ($this->employees->removeElement($employee)) {
-            // set the owning side to null (unless already changed)
             if ($employee->getGrade() === $this) {
                 $employee->setGrade(null);
             }
@@ -75,6 +71,6 @@ class Grade
 
     public function __toString(): string
     {
-        return $this?->getName();
+        return $this->getName();
     }
 }

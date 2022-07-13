@@ -13,25 +13,25 @@ class GroupCompetence
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    #[ORM\Column(type: 'string', length: 255, nullable: false, unique: true)]
+    private string $name;
 
     #[ORM\OneToMany(targetEntity: Competence::class, mappedBy: 'groupCompetence')]
-    private $competences;
+    private Collection $competences;
 
     public function __construct()
     {
         $this->competences = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -43,9 +43,6 @@ class GroupCompetence
         return $this;
     }
 
-    /**
-     * @return Collection<int, GroupCompetence>
-     */
     public function getCompetences(): Collection
     {
         return $this->competences;
@@ -64,7 +61,6 @@ class GroupCompetence
     public function removeCompetence(Competence $competence): self
     {
         if ($this->competences->removeElement($competence)) {
-            // set the owning side to null (unless already changed)
             if ($competence->getGroupCompetence() === $this) {
                 $competence->setGroupCompetence(null);
             }
@@ -75,6 +71,6 @@ class GroupCompetence
 
     public function __toString(): string
     {
-        return $this?->getName();
+        return $this->getName();
     }
 }

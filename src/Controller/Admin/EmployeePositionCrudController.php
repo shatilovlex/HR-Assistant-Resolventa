@@ -3,18 +3,19 @@
 namespace App\Controller\Admin;
 
 use App\Entity\EmployeePosition;
+use App\Entity\ExpectationLevel;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 class EmployeePositionCrudController extends AbstractCrudController
 {
-    private const FINALSCORES = [
-        'Нет знаний' => 0,
-        'Теоретические знания'=> 1,
-        'Есть опыт'=> 2,
-        'Профи'=> 3,
-        'Гуру'=> 4,
+    private const FINAL_SCORES = [
+        'Нет знаний' => ExpectationLevel::SCORE_NO_KNOWLEDGE,
+        'Теоретические знания' => ExpectationLevel::SCORE_THEORETICAL_KNOWLEDGE,
+        'Есть опыт' => ExpectationLevel::SCORE_HAVE_EXPERIENCE,
+        'Профи' => ExpectationLevel::SCORE_PROFICIENT,
+        'Гуру' => ExpectationLevel::SCORE_GURU,
     ];
 
     public static function getEntityFqcn(): string
@@ -28,7 +29,7 @@ class EmployeePositionCrudController extends AbstractCrudController
             AssociationField::new('employee')->setRequired(true),
             AssociationField::new('expectationLevel')->setRequired(true),
             ChoiceField::new('finalScore')
-                ->setChoices(self::FINALSCORES)
+                ->setChoices(self::FINAL_SCORES)
                 ->renderExpanded(),
         ];
     }

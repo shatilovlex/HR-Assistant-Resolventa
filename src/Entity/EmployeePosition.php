@@ -14,7 +14,7 @@ class EmployeePosition
     public const SCORE_PROFICIENT = 3;
     public const SCORE_GURU = 4;
 
-    private const SCORES = [
+    private const FINAL_SCORES = [
         self::SCORE_NO_KNOWLEDGE,
         self::SCORE_THEORETICAL_KNOWLEDGE,
         self::SCORE_HAVE_EXPERIENCE,
@@ -62,7 +62,7 @@ class EmployeePosition
 
     private static function scoreIsCorrect(int $finalScore): bool
     {
-        return array_search($finalScore, self::SCORES);
+        return array_search($finalScore, self::FINAL_SCORES);
     }
 
     public function getExpectationLevel(): ExpectationLevel

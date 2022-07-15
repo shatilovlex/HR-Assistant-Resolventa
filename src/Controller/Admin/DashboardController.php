@@ -29,18 +29,19 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Admin Panel');
+            ->setTitle('Competence panel');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
-        yield MenuItem::linkToCrud('Group Competence', 'fas fa-user', GroupCompetence::class);
-        yield MenuItem::linkToCrud('Grade', 'fas fa-file-text', Grade::class);
-        yield MenuItem::linkToCrud('Employees', 'fas fa-user', Employee::class);
-        yield MenuItem::linkToCrud('Competence', 'fas fa-file-text', Competence::class);
-        yield MenuItem::linkToCrud('Expectation Level', 'fas fa-clipboard-check', ExpectationLevel::class);
-        yield MenuItem::linkToCrud('Employee Position', 'fa-solid fa-chart-gantt', EmployeePosition::class);
-        yield MenuItem::linktoRoute('Table of competence', 'fa fa-chart-bar', 'tableCompetence');
+        yield MenuItem::linktoRoute('Table of competence', 'fa-solid fa-table', 'tableCompetence');
+        yield MenuItem::subMenu('Data management', 'fas fa-user')->setSubItems([
+            MenuItem::linkToCrud('Grade', 'fas fa-file-text', Grade::class),
+            MenuItem::linkToCrud('Group Competence', 'fas fa-user', GroupCompetence::class),
+            MenuItem::linkToCrud('Competence', 'fas fa-file-text', Competence::class),
+            MenuItem::linkToCrud('Expectation Level', 'fas fa-clipboard-check', ExpectationLevel::class),
+            MenuItem::linkToCrud('Employees', 'fas fa-user', Employee::class),
+            MenuItem::linkToCrud('Employee Position', 'fa-solid fa-chart-gantt', EmployeePosition::class),
+        ]);
     }
 }

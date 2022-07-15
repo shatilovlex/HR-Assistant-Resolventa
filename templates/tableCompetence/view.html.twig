@@ -4,27 +4,28 @@
 {% block content_title %}Table of competence{% endblock %}
 
 {% block main %}
-    <p>Employee name: {{ employee.firstName }} {{ employee.surname }}</p>
-    <p>Grade: {{ employee.grade.name }}</p>
+    <p><strong>Employee name: {{ employee.firstName }} {{ employee.surname }}</strong></p>
+    <p><strong>Grade: {{ employee.grade.name }}</strong></p>
 
-    <table>
-        <thead>
+    <table class="table table-hover">
+        <thead class="table-primary">
             <tr>
-                <td>Группа компетенций</td>
-                <td>Компетенция</td>
-                <td>Ожидаемая оценка</td>
-                <td>Текущая оценка</td>
+                <td><b>Group of competencies</b></td>
+                <td><b>Competence</b></td>
+                <td><b>Expected score</b></td>
+                <td><b>Current estimate</b></td>
             </tr>
         </thead>
         <tbody>
             {% for employeePosition in employee.employeePositions %}
                 {% set groupCompetence = employeePosition.expectationLevel.competence.groupCompetence %}
-                {% set countRowspan = groupCompetence.competences %}
+                {% set countRowspan = groupCompetence.competences.count %}
+
             <tr>
                 <td>{{ employeePosition.expectationLevel.competence.groupCompetence.name }}</td>
                 <td>{{ employeePosition.expectationLevel.competence.name }}</td>
-                <td>Ожидаемая оценка</td>
-                <td>Текущая оценка</td>
+                <td>{{ scores[employeePosition.expectationLevel.score] }}</td>
+                <td>{{ scores[employeePosition.finalScore] }}</td>
             </tr>
             {% endfor %}
         </tbody>
